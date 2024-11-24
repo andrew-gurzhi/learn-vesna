@@ -11,8 +11,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.mentoring.vesna.learnproject.model.AnimalType;
-import ru.mentoring.vesna.learnproject.model.Gender;
+import ru.mentoring.vesna.learnproject.jpa.entity.enumerated.AnimalType;
+import ru.mentoring.vesna.learnproject.jpa.entity.enumerated.Gender;
 
 
 @Entity
