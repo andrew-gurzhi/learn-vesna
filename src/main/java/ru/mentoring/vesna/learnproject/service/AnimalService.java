@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import ru.mentoring.vesna.learnproject.jpa.repository.AnimalRepository;
 import ru.mentoring.vesna.learnproject.model.Animal;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AnimalService {
@@ -18,5 +21,8 @@ public class AnimalService {
 
     public Animal getAnimalById( Long id ) {
         return Animal.fromEntity( animalRepository.findById( id ).orElseThrow() );
+    }
+
+    public List<AnimalEntity> getAnimalsByName(String name) { return animalRepository.findByName(name);
     }
 }
