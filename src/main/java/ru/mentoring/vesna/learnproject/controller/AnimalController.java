@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.mentoring.vesna.learnproject.service.AnimalService;
 import ru.mentoring.vesna.learnproject.jpa.entity.AnimalEntity;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -30,5 +31,14 @@ public class AnimalController {
         Optional<AnimalEntity> animalEntity = animalService.getAnimalById(id);
         return animalEntity.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{name}")
+    public ResponseEntity<List<AnimalEntity>> getAnimalByName(@PathVariable String name) {
+        List<AnimalEntity> animalEntities = animalService.getAnimalsByName(name);
+        if (animalEntities.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(animalEntities);
     }
 }
