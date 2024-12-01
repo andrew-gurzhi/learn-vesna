@@ -7,6 +7,7 @@ import ru.mentoring.vesna.learnproject.jpa.repository.AnimalRepository;
 import ru.mentoring.vesna.learnproject.model.Animal;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

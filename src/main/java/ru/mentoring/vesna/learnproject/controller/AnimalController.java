@@ -12,6 +12,7 @@ import ru.mentoring.vesna.learnproject.model.Animal;
 import ru.mentoring.vesna.learnproject.service.AnimalService;
 import ru.mentoring.vesna.learnproject.jpa.entity.AnimalEntity;
 
+import java.util.Optional;
 import java.util.List;
 
 @RestController
@@ -21,7 +22,7 @@ public class AnimalController {
     private final AnimalService animalService;
 
     @Autowired
-    public AnimalController( AnimalService animalService ) {
+    public AnimalController(AnimalService animalService) {
         this.animalService = animalService;
     }
 
