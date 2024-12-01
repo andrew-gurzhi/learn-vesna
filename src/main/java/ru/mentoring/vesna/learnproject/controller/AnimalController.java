@@ -13,7 +13,6 @@ import ru.mentoring.vesna.learnproject.service.AnimalService;
 import ru.mentoring.vesna.learnproject.jpa.entity.AnimalEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/animals")
