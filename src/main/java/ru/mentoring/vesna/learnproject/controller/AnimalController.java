@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mentoring.vesna.learnproject.model.Animal;
 import ru.mentoring.vesna.learnproject.service.AnimalService;
-import ru.mentoring.vesna.learnproject.jpa.entity.AnimalEntity;
 
-import java.util.Optional;
 import java.util.List;
 
 @RestController
@@ -39,8 +37,8 @@ public class AnimalController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<List<AnimalEntity>> getAnimalByName(@PathVariable String name) {
-        List<AnimalEntity> animalEntities = animalService.getAnimalsByName(name);
+    public ResponseEntity<List<Animal>> getAnimalByName(@PathVariable String name) {
+        List<Animal> animalEntities = animalService.getAnimalsByName(name);
         if (animalEntities.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
