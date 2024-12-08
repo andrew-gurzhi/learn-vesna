@@ -16,7 +16,6 @@ public class AnimalService {
 
     private final AnimalRepository animalRepository;
 
-
     public Animal createAnimal(Animal animal) {
         return Animal.fromEntity(animalRepository.save(animal.toEntity()));
     }
