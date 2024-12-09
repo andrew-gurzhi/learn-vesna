@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import ru.mentoring.vesna.learnproject.jpa.entity.AnimalEntity;
 import ru.mentoring.vesna.learnproject.jpa.repository.AnimalRepository;
 import ru.mentoring.vesna.learnproject.model.Animal;
@@ -92,5 +95,35 @@ class AnimalServiceTest {
         assertEquals(1, animals.get(0).getAge());
         assertEquals(15, animals.get(1).getAge());
         verify(animalRepository, times(1)).findByName("Bruno");
+    }
+
+    @Test
+    void testGetAllAnimals() {
+
+        int limit = 2;
+        int offset = 0;
+
+        AnimalEntity entity1 = new AnimalEntity(1L, "Lion", ru.mentoring.vesna.learnproject.jpa.entity.enumerated.AnimalType.CAT, 30, 5, ru.mentoring.vesna.learnproject.jpa.entity.enumerated.Gender.MALE);
+        AnimalEntity entity2 = new AnimalEntity(2L, "Tiger", ru.mentoring.vesna.learnproject.jpa.entity.enumerated.AnimalType.CAT, 130, 4, ru.mentoring.vesna.learnproject.jpa.entity.enumerated.Gender.FEMALE);
+
+        List<AnimalEntity> entities = List.of(entity1, entity2);
+        Page<AnimalEntity> page = new PageImpl<>(entities, PageRequest.of(offset, limit), entities.size());
+
+        when(animalRepository.findAll(PageRequest.of(offset, limit))).thenReturn(page);
+
+        Page<Animal> result = animalService.getAllAnimals(limit, offset);
+
+        assertNotNull(result);
+        assertEquals(2, result.getContent().size());
+
+        Animal animal1 = result.getContent().get(0);
+        assertEquals("Lion", animal1.getName());
+        assertEquals(AnimalType.CAT, animal1.getType());
+
+        Animal animal2 = result.getContent().get(1);
+        assertEquals("Tiger", animal2.getName());
+        assertEquals(AnimalType.CAT, animal2.getType());
+
+        verify(animalRepository, times(1)).findAll(PageRequest.of(offset, limit));
     }
 }
