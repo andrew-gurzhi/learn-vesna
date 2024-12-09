@@ -28,7 +28,7 @@ public class Animal {
                 entity.getName(),
                 entity.getType() != null ? AnimalType.valueOf( entity.getType().name() ) : null,
                 entity.getHeight(),
-                entity.getAnimal(),
+                entity.getAge(),
                 entity.getGender() != null ? Gender.valueOf( entity.getGender().name() ) : null
         );
     }
@@ -39,7 +39,7 @@ public class Animal {
         entity.setName( this.name );
         entity.setType( this.type != null ? ru.mentoring.vesna.learnproject.jpa.entity.enumerated.AnimalType.valueOf( this.type.name() ) : null );
         entity.setHeight( this.height );
-        entity.setAnimal( this.age );
+        entity.setAge( this.age );
         entity.setGender( this.gender != null ? ru.mentoring.vesna.learnproject.jpa.entity.enumerated.Gender.valueOf( this.gender.name() ) : null );
         return entity;
     }

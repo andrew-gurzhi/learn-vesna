@@ -33,7 +33,7 @@ public class AnimalEntity {
     private AnimalType type;
 
     private Integer height;
-    private Integer animal;
+    private Integer age;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
